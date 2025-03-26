@@ -1,0 +1,9 @@
+{
+  "categoryName": "Одяг",
+  "items": [
+    { "id": "1", "name": "Футболка", "shortname": "tshirt", "description": "Lorem ipsum.", "price": "$19" },
+    { "id": "2", "name": "Джинси", "shortname": "jeans", "description": "Lorem ipsum.", "price": "$49" },
+    { "id": "3", "name": "Куртка", "shortname": "jacket", "description": "Lorem ipsum.", "price": "$89" },
+    { "id": "4", "name": "Штани", "shortname": "pants", "description": "Lorem ipsum.", "price": "$39" }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "categoryName": "Меблі",
+  "items": [
+    { "id": "1", "name": "Диван", "shortname": "sofa", "description": "Lorem ipsum.", "price": "$799" },
+    { "id": "2", "name": "Крісло", "shortname": "chair", "description": "Lorem ipsum.", "price": "$150" },
+    { "id": "3", "name": "Столик", "shortname": "table", "description": "Lorem ipsum.", "price": "$100" },
+    { "id": "4", "name": "Шафа", "shortname": "wardrobe", "description": "Lorem ipsum.", "price": "$1200" }
+  ]
+}

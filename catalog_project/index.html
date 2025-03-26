@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог товарів</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="dist/app.js" defer></script>
+  <style>
+    /* Загальні стилі */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      margin-top: 30px;
+    }
+
+    header h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    nav {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    .category {
+      margin-bottom: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      cursor: pointer;
+    }
+
+    .category h3 {
+      margin: 0;
+      color: #333;
+    }
+
+    .products-container {
+      display: none; /* Категорії згорнуті за замовчуванням */
+      margin-top: 10px;
+    }
+
+    .product {
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 10px 0;
+      background-color: #fafafa;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .product img {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .product h4 {
+      color: #333;
+      font-size: 1.1em;
+    }
+
+    .product p {
+      color: #555;
+    }
+
+    .product p.price {
+      font-weight: bold;
+      color: #e74c3c;
+    }
+
+    /* Зміна кольору при наведенні на категорію */
+    .category:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="mt-4">
+      <h1>Каталог товарів</h1>
+      <nav>
+        <a href="#" id="catalogLink">Каталог</a> | 
+        <a href="#" id="specialsLink">Specials</a>
+      </nav>
+    </header>
+
+    <section id="categories" class="mt-4"></section>
+  </div>
+</body>
+</html>

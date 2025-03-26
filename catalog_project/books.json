@@ -1,0 +1,9 @@
+{
+  "categoryName": "Книги",
+  "items": [
+    { "id": "1", "name": "Книга 1", "shortname": "book1", "description": "Lorem ipsum.", "price": "$20" },
+    { "id": "2", "name": "Книга 2", "shortname": "book2", "description": "Lorem ipsum.", "price": "$15" },
+    { "id": "3", "name": "Книга 3", "shortname": "book3", "description": "Lorem ipsum.", "price": "$25" },
+    { "id": "4", "name": "Книга 4", "shortname": "book4", "description": "Lorem ipsum.", "price": "$10" }
+  ]
+}
