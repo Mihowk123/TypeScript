@@ -152,6 +152,11 @@ document.getElementById('specialsLink')!.addEventListener('click', (event) => {
   showRandomCategory();
 });
 
+document.getElementById('homeLink')!.addEventListener('click', (event) => {
+  event.preventDefault();
+  location.reload(); // Оновлення сторінки
+});
+
 fetchCategoryData().then(() => {
   renderCategories();
 });
