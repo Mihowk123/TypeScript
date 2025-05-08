@@ -1,0 +1,95 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "name": "JavaScript Basics",
+      "description": "Learn the fundamentals of JavaScript.",
+      "lessons": [
+        "Intro",
+        "Variables",
+        "Loops"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Advanced TypeScript",
+      "description": "Take your TypeScript skills to the next level.",
+      "lessons": [
+        "Generics",
+        "Types",
+        "Utility Types"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "React for Beginners",
+      "description": "Learn how to build React applications.",
+      "lessons": [
+        "JSX",
+        "Components",
+        "Hooks"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "1",
+      "questions": [
+        {
+          "question": "What is 2 + 2?",
+          "options": [
+            "3",
+            "4",
+            "5"
+          ],
+          "correct": "4"
+        },
+        {
+          "question": "What is 5 + 3?",
+          "options": [
+            "6",
+            "7",
+            "8"
+          ],
+          "correct": "8"
+        }
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "id": "1",
+      "text": "Hello! How can we help you today?"
+    },
+    {
+      "id": "757a",
+      "text": "цкпцп"
+    },
+    {
+      "id": "99f4",
+      "text": ""
+    },
+    {
+      "id": "e74c",
+      "text": "пццпц"
+    },
+    {
+      "id": "dce5",
+      "text": "пцпц"
+    },
+    {
+      "id": "3b74",
+      "text": "цаца"
+    },
+    {
+      "id": "efb8",
+      "user": "You",
+      "text": "dwq"
+    },
+    {
+      "id": "bdb8",
+      "user": "You",
+      "text": "а а"
+    }
+  ]
+}

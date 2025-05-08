@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "JavaScript Basics",
+        "description": "Learn the fundamentals of JavaScript."
+    },
+    {
+        "id": 2,
+        "name": "Advanced TypeScript",
+        "description": "Take your TypeScript skills to the next level."
+    },
+    {
+        "id": 3,
+        "name": "React for Beginners",
+        "description": "Learn how to build React applications."
+    }
+]

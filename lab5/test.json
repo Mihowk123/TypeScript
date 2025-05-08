@@ -1,0 +1,48 @@
+[
+    {
+      "question": "What is TypeScript?",
+      "options": [
+        "A superset of JavaScript",
+        "A new programming language",
+        "A database system"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Which of these is a JavaScript framework?",
+      "options": [
+        "React",
+        "Django",
+        "Ruby on Rails"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "What does HTML stand for?",
+      "options": [
+        "Hyper Text Markup Language",
+        "High Text Machine Language",
+        "Hyper Transfer Markup Language"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Which company developed JavaScript?",
+      "options": [
+        "Netscape",
+        "Microsoft",
+        "Google"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Which of the following is used to style web pages?",
+      "options": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "correctAnswer": 1
+    }
+  ]
+  
