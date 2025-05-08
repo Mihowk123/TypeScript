@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    text-align: center;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    background: #343a40; /* Змінений темний фон */
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Додано тінь для ефекту */
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 20px;
+    text-transform: uppercase; /* Великі літери для контрасту */
+    font-weight: bold; /* Товстіше для акценту */
+    letter-spacing: 1px; /* Відстань між літерами для кращої видимості */
+    transition: background 0.3s ease, transform 0.3s ease; /* Плавний перехід */
+}
+
+.nav a:hover {
+    background: #007bff; /* Синій фон при наведенні */
+    color: white;
+    border-radius: 5px;
+    transform: scale(1.1); /* Легке збільшення кнопок при наведенні */
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: left;
+}
+
+h1, h2 {
+    color: #007bff;
+    text-align: center;
+}
+
+.course, .chat-box, .test-container {
+    padding: 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.course {
+    background: #d1ecf1;
+    border-left: 5px solid #17a2b8;
+}
+
+.course:hover {
+    background: #bee5eb;
+    transform: scale(1.02);
+}
+
+.chat-box {
+    background: #fff3cd;
+    border-left: 5px solid #ffc107;
+}
+
+.test-container {
+    background: #d4edda;
+    border-left: 5px solid #28a745;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    padding: 15px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
