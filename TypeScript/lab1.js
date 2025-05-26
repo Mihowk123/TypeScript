@@ -1,4 +1,4 @@
-Victoria, [26.05.2025 11:13]
+
 function triangle(
     val1: number = 3,
     type1: "leg" | "hypotenuse" | "adjacent angle" | "opposite angle" | "angle" = "leg",
