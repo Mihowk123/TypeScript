@@ -20,6 +20,9 @@ function triangle(
   let a: number, b: number, c: number, alpha: number, beta: number;
 
   if (!isValidType(type1) || !isValidType(type2)) {
+    console.log(
+      "Please read the instructions again and provide valid types in valid order."
+    );
     return "failed";
   }
 
@@ -28,9 +31,13 @@ function triangle(
   }
 
   if (type1 === "hypotenuse" && type2 === "hypotenuse") {
+    console.log(
+      "Invalid input: Two hypotenuses are provided. Please provide valid types in valid order."
+    );
     return "failed";
   }
 
+  // Важлива перевірка: гіпотенуза має бути більшою за катет
   if (
     (isHypotenuse(type1) && isLeg(type2) && val1 <= val2) ||
     (isHypotenuse(type2) && isLeg(type1) && val2 <= val1)
@@ -39,6 +46,9 @@ function triangle(
   }
 
   if (isAngle(type1) && isAngle(type2)) {
+    console.log(
+      "Invalid input: Two angles are provided. Please provide valid types in valid order."
+    );
     return "failed";
   }
 
@@ -129,7 +139,7 @@ function triangle(
           break;
         case "hypotenuse":
           c = val2;
-          a = c * Math.sin(toRadians(alpha));
+          a = c * Math.cos(toRadians(alpha));
           b = Math.sqrt(c * c - a * a);
           break;
         default:
@@ -145,19 +155,20 @@ function triangle(
       break;
   }
 
+  // Перевірка валідності трикутника після обчислень
   if (!isValidTriangle(a, b, c)) {
     return "Invalid triangle: the sum of any two sides must be greater than the third side.";
   }
 
+  // Перевірка гострих кутів
   if (!isValidAngle(alpha) || !isValidAngle(beta)) {
     return "The angles of the triangle must be acute";
   }
 
-  console.log(`a = ${a.toFixed(2)}, b = ${b.toFixed(2)}, c = ${c.toFixed(2)}`);
-  console.log(`alpha = ${alpha.toFixed(2)}°, beta = ${beta.toFixed(2)}°`);
-
+  console.log({ a, b, c, alpha, beta });
   return "success";
 }
+
 
 function testTriangle() {
   console.log("Running tests...");
