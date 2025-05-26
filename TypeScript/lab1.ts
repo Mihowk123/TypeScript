@@ -1,97 +1,203 @@
-type TriangleElement = "leg" | "hypotenuse" | "adjacent angle" | "opposite angle" | "angle";
+function triangle(
+  val1: number = 3,
+  type1: "leg" | "hypotenuse" | "adjacent angle" | "opposite angle" | "angle" = "leg",
+  val2: number = 4,
+  type2: "leg" | "hypotenuse" | "adjacent angle" | "opposite angle" | "angle" = "leg"
+): string {
+  const validTypes = ["leg", "hypotenuse", "adjacent angle", "opposite angle", "angle"];
+  const anglesTypes = ["adjacent angle", "opposite angle", "angle"];
 
-function triangle(value1: number, type1: TriangleElement, value2: number, type2: TriangleElement): string {
-    console.log("Usage: triangle(value1, type1, value2, type2)");
-    console.log("Types: 'leg', 'hypotenuse', 'adjacent angle', 'opposite angle', 'angle'");
-    
-    const toRadians = (degrees: number) => (degrees * Math.PI) / 180;
-    const toDegrees = (radians: number) => (radians * 180) / Math.PI;
+  const isValidType = (type: string): boolean => validTypes.includes(type);
+  const isValidValue = (val: number): boolean => val > 0;
+  const isAngle = (type: string): boolean => anglesTypes.includes(type);
+  const isValidAngle = (angle: number): boolean => angle < 90;
+  const isLeg = (type: string): boolean => type === "leg";
+  const isHypotenuse = (type: string): boolean => type === "hypotenuse";
+  const isValidTriangle = (a: number, b: number, c: number): boolean => a + b > c && a + c > b && c + b > a;
+  const toDegrees = (angle: number): number => angle * (180 / Math.PI);
+  const toRadians = (angle: number): number => angle * (Math.PI / 180);
 
-    if (value1 <= 0 || value2 <= 0) {
-        console.log("Values must be positive numbers.");
-        return "failed";
-    }
+  let a: number, b: number, c: number, alpha: number, beta: number;
 
-    if (!["leg", "hypotenuse", "adjacent angle", "opposite angle", "angle"].includes(type1) ||
-        !["leg", "hypotenuse", "adjacent angle", "opposite angle", "angle"].includes(type2)) {
-        console.log("Invalid type. Please use one of the defined types.");
-        return "failed";
-    }
-    
-    let a: number = 0, b: number = 0, c: number = 0;
-    let alpha: number = 0, beta: number = 0;
+  if (!isValidType(type1) || !isValidType(type2)) {
+    return "failed";
+  }
 
-    if (type1 === "leg" && type2 === "leg") {
-        a = value1;
-        b = value2;
-        c = Math.sqrt(a ** 2 + b ** 2);
-        alpha = toDegrees(Math.asin(a / c));
-        beta = 90 - alpha;
-    } 
-    else if ((type1 === "leg" && type2 === "hypotenuse") || (type1 === "hypotenuse" && type2 === "leg")) {
-        const leg = type1 === "leg" ? value1 : value2;
-        const hypotenuse = type1 === "hypotenuse" ? value1 : value2;
+  if (!isValidValue(val1) || !isValidValue(val2)) {
+    return "Invalid input: Values must be positive numbers.";
+  }
 
-        if (leg >= hypotenuse) {
-            console.log("Invalid triangle dimensions: the leg cannot be greater than or equal to the hypotenuse.");
-            return "failed";
-        }
+  if (type1 === "hypotenuse" && type2 === "hypotenuse") {
+    return "failed";
+  }
 
-        const otherLeg = Math.sqrt(hypotenuse ** 2 - leg ** 2);
-        
-        a = leg;
-        b = otherLeg;
-        c = hypotenuse;
-        alpha = toDegrees(Math.asin(a / c));
-        beta = 90 - alpha;
-    }
-    else if ((type1 === "leg" && type2 === "angle") || (type1 === "angle" && type2 === "leg")) {
-        const leg = type1 === "leg" ? value1 : value2;
-        const angle = type1 === "angle" ? value1 : value2;
+  if (
+    (isHypotenuse(type1) && isLeg(type2) && val1 <= val2) ||
+    (isHypotenuse(type2) && isLeg(type1) && val2 <= val1)
+  ) {
+    return "Hypotenuse must be greater than the leg";
+  }
 
-        if (angle >= 90 || angle <= 0) {
-            console.log("Angle must be between 0 and 90 degrees.");
-            return "failed";
-        }
+  if (isAngle(type1) && isAngle(type2)) {
+    return "failed";
+  }
 
-        const hypotenuse = leg / Math.sin(toRadians(angle));
-        const otherLeg = Math.sqrt(hypotenuse ** 2 - leg ** 2);
-        
-        a = leg;
-        b = otherLeg;
-        c = hypotenuse;
-        alpha = angle;
-        beta = 90 - alpha;
-    }
-    else if ((type1 === "hypotenuse" && type2 === "angle") || (type1 === "angle" && type2 === "hypotenuse")) {
-        const hypotenuse = type1 === "hypotenuse" ? value1 : value2;
-        const angle = type1 === "angle" ? value1 : value2;
+  if (
+    (isAngle(type1) && !isValidAngle(val1)) ||
+    (isAngle(type2) && !isValidAngle(val2))
+  ) {
+    return "The angles of the triangle must be acute";
+  }
 
-        if (angle >= 90 || angle <= 0) {
-            console.log("Angle must be between 0 and 90 degrees.");
-            return "failed";
-        }
+  switch (type1) {
+    case "leg":
+      a = val1;
+      switch (type2) {
+        case "hypotenuse":
+          c = val2;
+          b = Math.sqrt(c * c - a * a);
+          alpha = toDegrees(Math.asin(a / c));
+          beta = 90 - alpha;
+          break;
+        case "leg":
+          b = val2;
+          c = Math.sqrt(a * a + b * b);
+          alpha = toDegrees(Math.asin(a / c));
+          beta = 90 - alpha;
+          break;
+        case "adjacent angle":
+          beta = val2;
+          alpha = 90 - beta;
+          c = a / Math.cos(toRadians(beta));
+          b = Math.sqrt(c * c - a * a);
+          break;
+        case "opposite angle":
+          alpha = val2;
+          beta = 90 - alpha;
+          c = a / Math.sin(toRadians(alpha));
+          b = Math.sqrt(c * c - a * a);
+          break;
+        default:
+          return "Not enough information to perform calculations";
+      }
+      break;
+    case "hypotenuse":
+      c = val1;
+      switch (type2) {
+        case "leg":
+          a = val2;
+          b = Math.sqrt(c * c - a * a);
+          alpha = toDegrees(Math.asin(a / c));
+          beta = 90 - alpha;
+          break;
+        case "angle":
+          alpha = val2;
+          beta = 90 - alpha;
+          a = c * Math.sin(toRadians(alpha));
+          b = Math.sqrt(c * c - a * a);
+          break;
+        default:
+          return "Not enough information to perform calculations";
+      }
+      break;
+    case "adjacent angle":
+      alpha = val1;
+      beta = 90 - alpha;
+      switch (type2) {
+        case "leg":
+          a = val2;
+          c = a / Math.cos(toRadians(alpha));
+          b = Math.sqrt(c * c - a * a);
+          break;
+        case "hypotenuse":
+          c = val2;
+          a = c * Math.sin(toRadians(alpha));
+          b = Math.sqrt(c * c - a * a);
+          break;
+        default:
+          return "Not enough information to perform calculations";
+      }
+      break;
+    case "opposite angle":
+      alpha = val1;
+      beta = 90 - alpha;
+      switch (type2) {
+        case "leg":
+          a = val2;
+          c = a / Math.sin(toRadians(alpha));
+          b = Math.sqrt(c * c - a * a);
+          break;
+        case "hypotenuse":
+          c = val2;
+          a = c * Math.sin(toRadians(alpha));
+          b = Math.sqrt(c * c - a * a);
+          break;
+        default:
+          return "Not enough information to perform calculations";
+      }
+      break;
+    case "angle":
+      alpha = val1;
+      beta = 90 - alpha;
+      c = val2;
+      a = c * Math.sin(toRadians(alpha));
+      b = Math.sqrt(c * c - a * a);
+      break;
+  }
 
-        const legA = hypotenuse * Math.sin(toRadians(angle));
-        const legB = Math.sqrt(hypotenuse ** 2 - legA ** 2);
-        
-        a = legA;
-        b = legB;
-        c = hypotenuse;
-        alpha = angle;
-        beta = 90 - alpha;
-    }
-    else {
-        console.log("Invalid combination of inputs. Please check the instructions.");
-        return "failed";
-    }
+  if (!isValidTriangle(a, b, c)) {
+    return "Invalid triangle: the sum of any two sides must be greater than the third side.";
+  }
 
-    console.log(`a = ${a.toFixed(2)}, b = ${b.toFixed(2)}, c = ${c.toFixed(2)}`);
-    console.log(`alpha = ${alpha.toFixed(2)}°, beta = ${beta.toFixed(2)}°`);
-    return "success";
+  if (!isValidAngle(alpha) || !isValidAngle(beta)) {
+    return "The angles of the triangle must be acute";
+  }
+
+  console.log(`a = ${a.toFixed(2)}, b = ${b.toFixed(2)}, c = ${c.toFixed(2)}`);
+  console.log(`alpha = ${alpha.toFixed(2)}°, beta = ${beta.toFixed(2)}°`);
+
+  return "success";
 }
 
-// Приклади використання
-triangle(4, "leg", 8, "hypotenuse");  // Виправлена логіка, має тепер працювати правильно
-triangle(30, "angle", 10, "hypotenuse");
-triangle(6, "leg", 8, "leg");
+function testTriangle() {
+  console.log("Running tests...");
+
+  function logTestCase(description: string, val1: number, type1: any, val2: number, type2: any, expected: string) {
+    const result = triangle(val1, type1, val2, type2);
+    console.log(`${description} -> Expected: ${expected}, Got: ${result}`);
+    console.assert(result === expected, `${description} Failed`);
+  }
+
+  // Valid cases
+  logTestCase("Valid right triangle (legs)", 3, "leg", 4, "leg", "success");
+  logTestCase("Valid right triangle (hypotenuse and leg)", 5, "hypotenuse", 3, "leg", "success");
+  logTestCase("Valid right triangle (angle and hypotenuse)", 30, "angle", 10, "hypotenuse", "success");
+
+  // Invalid types
+  logTestCase("Invalid type1", 3, "invalid" as any, 4, "leg", "failed");
+  logTestCase("Invalid type2", 3, "leg", 4, "invalid" as any, "failed");
+
+  // Invalid values
+  logTestCase("Negative leg", -3, "leg", 4, "leg", "Invalid input: Values must be positive numbers.");
+  logTestCase("Negative leg (second)", 3, "leg", -4, "leg", "Invalid input: Values must be positive numbers.");
+  logTestCase("Zero leg", 0, "leg", 4, "leg", "Invalid input: Values must be positive numbers.");
+
+  // Two hypotenuses
+  logTestCase("Two hypotenuses", 5, "hypotenuse", 6, "hypotenuse", "failed");
+
+  // Hypotenuse must be greater than the leg
+  logTestCase("Hypotenuse smaller than leg", 5, "leg", 3, "hypotenuse", "Hypotenuse must be greater than the leg");
+
+  // Two angles
+  logTestCase("Two angles", 30, "angle", 60, "angle", "failed");
+
+  // Invalid angles
+  logTestCase("Angle greater than 90", 100, "angle", 10, "leg", "The angles of the triangle must be acute");
+
+  // Invalid triangle condition
+  logTestCase("Invalid triangle condition", 10, "leg", 50, "leg", "Invalid triangle: the sum of any two sides must be greater than the third side.");
+
+  console.log("All tests completed.");
+}
+
+testTriangle();
